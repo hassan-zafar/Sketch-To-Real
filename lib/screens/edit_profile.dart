@@ -10,7 +10,6 @@ import 'package:fyp_sketch_to_real/models/userModel.dart';
 import 'package:fyp_sketch_to_real/tools/loading.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:image/image.dart' as Im;
 
 class EditProfile extends StatefulWidget {
   final String currentUserID;
@@ -114,7 +113,7 @@ class _EditProfileState extends State<EditProfile> {
       _isUpdating = true;
     });
     if (_displayNameValid) {
-      file != null ? await compressImage() : null;
+      // file != null ? await compressImage() : null;
       String postMediaUrl = file != null
           ? await uploadImage(file).catchError((onError) {
               // isUploading = false;
@@ -241,16 +240,16 @@ class _EditProfileState extends State<EditProfile> {
     });
   }
 
-  compressImage() async {
-    final tempDir = await getTemporaryDirectory();
-    final path = tempDir.path;
-    Im.Image imageFile = Im.decodeImage(file.readAsBytesSync());
-    final compressedImageFile = File('$path/img_${currentUser.userId}.jpg')
-      ..writeAsBytesSync(Im.encodeJpg(imageFile, quality: 85));
-    setState(() {
-      file = compressedImageFile;
-    });
-  }
+  // compressImage() async {
+  //   final tempDir = await getTemporaryDirectory();
+  //   final path = tempDir.path;
+  //   Im.Image imageFile = Im.decodeImage(file.readAsBytesSync());
+  //   final compressedImageFile = File('$path/img_${currentUser.userId}.jpg')
+  //     ..writeAsBytesSync(Im.encodeJpg(imageFile, quality: 85));
+  //   setState(() {
+  //     file = compressedImageFile;
+  //   });
+  // }
 
   Future<String> uploadImage(imageFile) async {
     Reference firebaseStorageRef = FirebaseStorage.instance

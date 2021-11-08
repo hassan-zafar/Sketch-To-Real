@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_sketch_to_real/config/collectionNames.dart';
 import 'package:fyp_sketch_to_real/screens/activity_feed.dart';
+import 'package:fyp_sketch_to_real/screens/drawing/drawingPage.dart';
 import 'package:fyp_sketch_to_real/screens/profile.dart';
 import 'package:fyp_sketch_to_real/screens/search.dart';
 import 'package:fyp_sketch_to_real/screens/timeline.dart';
@@ -59,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                 physics: NeverScrollableScrollPhysics(),
                 children: [
                   Timeline(currentUser: currentUser),
-                  // ActivityFeed(),
+                  DrawingPage(),
                   Upload(currentUser: currentUser),
                   // Search(),
                   Profile(profileId: currentUser?.userId),
@@ -86,8 +87,8 @@ class _HomePageState extends State<HomePage> {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.track_changes_outlined),
                     label: "Timeline"),
-                // BottomNavigationBarItem(
-                //     icon: Icon(Icons.notifications), label: "Activity Feed"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.format_paint_outlined), label: "Draw"),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.upload_outlined), label: "Upload"),
                 // BottomNavigationBarItem(

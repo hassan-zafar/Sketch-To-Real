@@ -7,7 +7,6 @@ import 'package:fyp_sketch_to_real/config/collectionNames.dart';
 import 'package:fyp_sketch_to_real/models/userModel.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:image/image.dart' as Im;
 import 'package:uuid/uuid.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -89,16 +88,16 @@ class _UploadState extends State<Upload>
     });
   }
 
-  compressImage() async {
-    final tempDir = await getTemporaryDirectory();
-    final path = tempDir.path;
-    Im.Image imageFile = Im.decodeImage(file.readAsBytesSync());
-    final compressedImageFile = File('$path/img_$postId.jpg')
-      ..writeAsBytesSync(Im.encodeJpg(imageFile, quality: 85));
-    setState(() {
-      file = compressedImageFile;
-    });
-  }
+  // compressImage() async {
+  //   final tempDir = await getTemporaryDirectory();
+  //   final path = tempDir.path;
+  //   Im.Image imageFile = Im.decodeImage(file.readAsBytesSync());
+  //   final compressedImageFile = File('$path/img_$postId.jpg')
+  //     ..writeAsBytesSync(Im.encodeJpg(imageFile, quality: 85));
+  //   setState(() {
+  //     file = compressedImageFile;
+  //   });
+  // }
 
   handleImageFromCamera() async {
     Navigator.pop(context);
@@ -173,7 +172,7 @@ class _UploadState extends State<Upload>
     setState(() {
       isUploading = true;
     });
-    file != null ? await compressImage() : null;
+    // file != null ? await compressImage() : null;
     String postMediaUrl = file != null
         ? await uploadImage(file).catchError((onError) {
             isUploading = false;
