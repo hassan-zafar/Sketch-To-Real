@@ -31,7 +31,7 @@ class MyCustomPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    throw UnimplementedError();
+  bool shouldRepaint(MyCustomPainter oldDelegate) {
+    return oldDelegate.points != points;
   }
 }
