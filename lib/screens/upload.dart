@@ -8,8 +8,8 @@ import 'package:fyp_sketch_to_real/models/userModel.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
+// import 'package:geocoding/geocoding.dart';
+// import 'package:geolocator/geolocator.dart';
 
 class Upload extends StatefulWidget {
   final UserModel currentUser;
@@ -29,7 +29,7 @@ class _UploadState extends State<Upload>
   File file;
   bool isUploading = false;
   String postId = Uuid().v4();
-  Position position;
+  // Position position;
 
   selectImage(parentContext) {
     return showDialog(
@@ -287,47 +287,49 @@ class _UploadState extends State<Upload>
               ),
             ),
           ),
-          Container(
-            width: 200.0,
-            height: 100.0,
-            alignment: Alignment.center,
-            child: RaisedButton.icon(
-              label: Text(
-                "Use Current Location",
-                style: TextStyle(color: Colors.white),
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              color: Colors.blue,
-              onPressed: getUserLocation,
-              icon: Icon(
-                Icons.my_location,
-                color: Colors.white,
-              ),
-            ),
-          ),
+          // Container(
+          //   width: 200.0,
+          //   height: 100.0,
+          //   alignment: Alignment.center,
+          //   child: RaisedButton.icon(
+          //     label: Text(
+          //       "Use Current Location",
+          //       style: TextStyle(color: Colors.white),
+          //     ),
+          //     shape: RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.circular(30.0),
+          //     ),
+          //     color: Colors.blue,
+          //     onPressed: 
+          //     getUserLocation,
+          //     icon: Icon(
+          //       Icons.my_location,
+          //       color: Colors.white,
+          //     ),
+          //   ),
+          // ),
+      
         ],
       ),
     );
   }
 
-  getUserLocation() async {
-    LocationPermission permission = await Geolocator.requestPermission();
-    Position _position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
-    setState(() {
-      position = _position;
-    });
-    List<Placemark> placeMarks =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
-    Placemark placemark = placeMarks[0];
-    String completeAddress =
-        '${placemark.street}, ${placemark.subLocality}, ${placemark.locality}, ${placemark.subAdministrativeArea}, ${placemark.administrativeArea} ${placemark.postalCode}, ${placemark.country}';
-    print(completeAddress);
-    locationController.text = completeAddress;
-  }
+  // getUserLocation() async {
+  //   LocationPermission permission = await Geolocator.requestPermission();
+  //   Position _position = await Geolocator.getCurrentPosition(
+  //     desiredAccuracy: LocationAccuracy.high,
+  //   );
+  //   setState(() {
+  //     position = _position;
+  //   });
+  //   List<Placemark> placeMarks =
+  //       await placemarkFromCoordinates(position.latitude, position.longitude);
+  //   Placemark placemark = placeMarks[0];
+  //   String completeAddress =
+  //       '${placemark.street}, ${placemark.subLocality}, ${placemark.locality}, ${placemark.subAdministrativeArea}, ${placemark.administrativeArea} ${placemark.postalCode}, ${placemark.country}';
+  //   print(completeAddress);
+  //   locationController.text = completeAddress;
+  // }
 
   bool get wantKeepAlive => true;
 

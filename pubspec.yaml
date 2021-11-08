@@ -41,8 +41,8 @@ dependencies:
   path_provider:
   timeago:
   image_picker:
-  geocoding:
-  geolocator:
+  # geocoding:
+  # geolocator:
   bot_toast:
   animated_splash_screen:
   flutter_local_notifications:
